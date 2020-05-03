@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
@@ -13,7 +15,7 @@ after_success:
   - docker build -t aenglisc/multi-server -f ./server/Dockerfile ./server
   - docker build -t aenglisc/multi-worker -f ./worker/Dockerfile ./worker
   - docker build -t aenglisc/multi-nginx  -f ./nginx/Dockerfile  ./nginx
-  - docker login -u "$DOCKER_ID" --p "$DOCKER_PASSWORD"
+  - docker login -u $DOCKER_ID --p $DOCKER_PASSWORD
   - docker push aenglisc/multi-client
   - docker push aenglisc/multi-server
   - docker push aenglisc/multi-worker
